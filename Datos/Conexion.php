@@ -7,7 +7,7 @@ class Conexion
     private static $servidor = 'locahost';
     private static $puerto = '3306';
     private static $usuario = 'root';
-    private static $password = 'Angel123*';
+    private static $password = 'root';
     private static $conexion  = null;
 
     public function __construct() {
