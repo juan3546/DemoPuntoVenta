@@ -4,7 +4,7 @@ la BD -->
 class Conexion
 {
     private static $db = 'tpv';
-    private static $servidor = 'locahost';
+    private static $servidor = 'localhost';
     private static $puerto = '3306';
     private static $usuario = 'root';
     private static $password = 'root';

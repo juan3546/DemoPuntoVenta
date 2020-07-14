@@ -21,7 +21,7 @@ class DaoCategoria
   $clave=0;
   try 
   {
-   $sql = "INSERT INTO categoria (id_categoria, nombre, estatus) values(?, ?, ?)";
+   $sql = "INSERT INTO categoria(id_categoria, nombre, estatus)values(?, ?, ?)";
 
    $this->conectar();
    $this->conexion->prepare($sql)
@@ -125,6 +125,21 @@ class DaoCategoria
       ));
     return true;
     Conexion::cerrarConexion();
+  }
+  public function EliminarEstatusCategoria($id)
+  {
+   try 
+    {
+      $this->conectar();    
+      $sentenciaSQL = $this->conexion->prepare("UPDATE categoria SET estatus= 0 WHERE id_categoria = ?");                             
+      $sentenciaSQL->execute([$id]);
+      return true;
+    } catch (Exception $e) 
+    {
+      return false;
+    }finally{
+      Conexion::cerrarConexion();
+    }
   }
 
   public function obtenerEstatus()
