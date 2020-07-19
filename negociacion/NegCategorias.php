@@ -7,6 +7,7 @@ require_once '../Pojos/PojoCategoria.php';
 $daoCategoria = new DaoCategoria();
 $pojoCategoria = new PojoCategoria();
 $dato = "";
+$datos = "";
 
 
 $nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : '';
@@ -20,40 +21,27 @@ switch($opcion){
         $pojoCategoria->nombre = $nombre;
         $pojoCategoria->estatus = intval($estatus);
         $registro = $daoCategoria->registrarCategoria($pojoCategoria);
-        
-        
-        if($registro > 0){
-            $dato = $daoCategoria->getDatosCategoria();
-        }else{
-            $dato = "";
-        }
-       
+        $dato = $daoCategoria->getDatosCategoriaTabla();
         break;
     case 2: //modificación
         $pojoCategoria->id_categoria = $id;
         $pojoCategoria->nombre = $nombre;
         $pojoCategoria->estatus = $estatus;
         $registro = $daoCategoria->editarCategoria($pojoCategoria);
-        if($registro > 0){
-            $dato = $daoCategoria->getDatosCategoria();
-        }else{
-            $dato = "";
-        }
+        $dato = $daoCategoria->getDatosCategoriaTabla();
        
         break;        
     case 3://baja
         $registro = $daoCategoria->EliminarEstatusCategoria($id);
-        if($registro > 0){
-            $dato = $daoCategoria->getDatosCategoria();
-        }else{
-            $dato = "";
-        }
+        $dato = $daoCategoria->getDatosCategoriaTabla();
+        
                                
         break;        
 }
 
 
-echo $dato ; //enviar el array final en formato json a JS
+
+return json_encode($dato, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ; //enviar el array final en formato json a JS
 
 
 

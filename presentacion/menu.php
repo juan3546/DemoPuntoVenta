@@ -7,9 +7,9 @@
   <meta name="author" content="">
     <title>Punto de Venta</title>
 
+    <link rel="stylesheet" href="css/alertify.css">
     <link rel="stylesheet" href="css/bootstrap.css" >
-    <link rel="stylesheet" href="css/material-components-web.min.css">
-    <link rel="stylesheet" href="css/dataTables.material.min.css">
+    <link rel="stylesheet" href="css/dataTables.bootstrap.css">
     <link rel="stylesheet" href="css/estilo.css">
 
   </head>
@@ -62,6 +62,3 @@
             </ul>
           </div>
         </nav>
-  
-       
-      <!-- /#page-content-wrapper -->
