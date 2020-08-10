@@ -38,10 +38,20 @@ switch($opcion){
                                
         break;        
 }
+/*
+$arr= array();
+foreach($dato as $datos){
+    $arr = array(
+        "nombre" => $datos["nombre"],
+        "estatus" => $datos["estatus"],
+        "id_categoria" => $datos["id_categoria"]
+    );
+}
+
+*/
 
 
-
-return json_encode($dato, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ; //enviar el array final en formato json a JS
+echo $dato;//json_encode($arr) ; //enviar el array final en formato json a JS
 
 
 

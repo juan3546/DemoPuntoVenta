@@ -113,15 +113,23 @@ class DaoCategoria
   public function getDatosCategoriaTabla()
   {
     try{
+
       $this->conectar();
-      $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
-      $sentenciaSQL = $this->conexion->prepare("SELECT id_categoria, nombre, estatus FROM categoria  ORDER BY id_categoria DESC LIMIT 1"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
-      $sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+    
+    //  $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
+    //  $sentenciaSQL = $this->conexion->prepare("SELECT id_categoria, nombre, estatus FROM categoria  ORDER BY id_categoria DESC LIMIT 1"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+    //  $sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
       /*Se recorre el cursor para obtener los datos*/
 
-      $data=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+    //  $data=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+        $consulta = "SELECT id_categoria, nombre, estatus FROM categoria  ORDER BY id_categoria DESC LIMIT 1";
+        $sentenciaSQL = $this->conexion->prepare($consulta);
+        $sentenciaSQL->execute();
+        $data=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+        return json_encode($data, JSON_UNESCAPED_UNICODE); //enviar el array final en formato json a JS
      
-    return $data;
+    // return $data;
     }catch(Exception $e){
       echo $e->getMessage();
       return null;

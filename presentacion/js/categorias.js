@@ -41,8 +41,8 @@ $(document).ready(function(){
     $(document).on("click", ".btnEditar", function(){
         fila = $(this).closest("tr");
         id = parseInt(fila.find('td:eq(0)').text());
-        nombre = fila.find('td:eq(1)').text();
-        estatus = fila.find('td:eq(2)').text();
+        nombre = fila.find('td:eq(0 )').text();
+        estatus = fila.find('td:eq(1)').text();
         
       
     
@@ -79,7 +79,7 @@ $(document).ready(function(){
                 dataType: "json",
                 data: {opcion:opcion, id:id},
                 success: function(){
-                    tbCategoria.row(fila.parents('tr')).remove().draw();
+                  tbCategoria.row(fila.parents('tr')).remove().draw();
                 }
             });
         }       
@@ -96,14 +96,16 @@ $(document).ready(function(){
         $.ajax({
             url: "../negociacion/NegCategorias.php",
             type: "POST",
-            dataType: "json",
+            //dataType: "json",
+            async: true,
             data: {nombre:nombre, estatus:estatus,  opcion:opcion, id:id},
             success: function(data){  
-              var datos = JSON.parse(data);
-              console.log(datos);
-                id = datos[0].id_categoria;            
-                nombre = datos[0].nombre;
-                estatus = datos[0].estatus;
+              console.log(data);
+                id = data[0].id_categoria;            
+                nombre = data[0].nombre;
+                estatus = data[0].estatus;
+                console.log(data[0].id_categoria);
+                 var tbCategoria = $('#tbCategoria').DataTable();
                 if(opcion == 1){tbCategoria.row.add([id,nombre,estatus]).draw();}
                 else{tbCategoria.row(fila).data([id,nombre,estatus]).draw();}            
             },
